@@ -44,7 +44,6 @@ export function getAll() {
     } catch(err) {
       dispatch(fail(err.message));
       dispatch(stop());
-      // console.log(err);
     }
   };
 }
@@ -68,8 +67,8 @@ export function addTransaction(details) {
     dispatch(start());
 
     try {
-      await bankService.addTransaction(details);
-      dispatch(success());
+      const transactions = await bankService.addTransaction(details);
+      dispatch(success(transactions));
     } catch(err) {
       dispatch(fail(err.message));
       dispatch(stop());

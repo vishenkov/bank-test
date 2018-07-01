@@ -23,3 +23,7 @@ export class Storage {
     ));
   }
 }
+
+export const delay = (num = 100) => new Promise((resolve) =>
+  setTimeout(() => resolve(), num)
+);

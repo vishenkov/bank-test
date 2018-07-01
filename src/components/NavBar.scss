@@ -1,0 +1,47 @@
+.container {
+  background-color: #f8f9fa;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  padding: .5rem 1rem;
+  color: rgba(0,0,0,.9);
+  border-bottom: 1px solid rgba(0,0,0,0.14);
+}
+
+.items {
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  margin-right: 1rem;
+  font-size: 1.25rem;
+}
+
+.link {
+  display: block;
+  padding: .5rem 1rem;
+}
+
+.logo, .link {
+  cursor: pointer;
+  text-decoration: none;
+  
+  &:visited {
+    color: rgba(0,0,0,.9);
+  }
+  &:hover {
+    color: rgba(0,0,0,.7);
+  }
+}
+
+.card {
+  margin-left: auto
+}

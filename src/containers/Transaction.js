@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
   getBanks,
-  addTransaction
+  addTransaction,
+  showAlert,
 } from '../actions';
 
 import Transaction from '../components/Transaction'
@@ -20,7 +21,8 @@ const mapDispatchToProps = dispatch =>
     {
       getBanks,
       addTransaction,
-      push
+      showAlert,
+      push,
     },
     dispatch
   );

@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
     case USER_LOGIN:
       return {
         ...state,
-        ...action.user,
+        user: action.user,
         isChecking: false,
         isLoggedIn: true,
       };

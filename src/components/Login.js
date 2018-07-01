@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router-dom';
 import Progress from './Progress';
+import Input from './Input';
+import Button from './Button';
+import Overlay from './Overlay';
 
+import styles from './Login.scss';
 
 class Login extends Component {
   state = {
@@ -10,10 +14,10 @@ class Login extends Component {
   };
 
   handleSubmit = e => {
-    const { username, password } = this.state;
-
     e.preventDefault();
-    console.log(this.props);
+
+    const { username, password } = this.state;
+    if (!username || !password) return this.props.showAlert('Username and Password should not be empty!');
     this.props.login(username, password);
   };
 
@@ -26,25 +30,37 @@ class Login extends Component {
 
   render() {
     const { username, password } = this.state;
-    const { isLoggedIn, location } = this.props;
+    const { isLoggedIn, isChecking, location } = this.props;
 
     return (
-      <div className="col-md-6 col-md-offset-3">
+      <div>
       {isLoggedIn &&
         <Redirect to={{ pathname: '/', state: { from: location } }} />}
       <h2>Login</h2>
-      <form name="form" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <input type="text" className="form-control" name="username" value={username} onChange={this.handleChange} />
-          </div>
-          <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} />
-          </div>
-          <div className="form-group">
-              <button className="btn btn-primary">Login</button>
-          </div>
+      <form className={styles.form} name="form" onSubmit={this.handleSubmit}>
+        {isChecking &&
+          <Overlay>
+            <Progress />
+          </Overlay>
+        }
+        <Input
+          name="username"
+          value={username}
+          label="Username"
+          onChange={this.handleChange}
+        />
+        <Input
+          type="password"
+          name="password"
+          value={password}
+          label="Password"
+          onChange={this.handleChange}
+        />
+        <Button
+          type="submit"
+          text="Login"
+          primary
+        />
       </form>
     </div>
   );

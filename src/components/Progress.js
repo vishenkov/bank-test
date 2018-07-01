@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './Progress.scss';
 
 const Progress = () => (
-  <div className="progress">
-    <div className="progress-bar progress-bar-striped progress-bar-animated w-100" role="progressbar" />
+  <div className={styles.container}>
+    <div className={styles.progress} role="progressbar" />
   </div>
 );
 

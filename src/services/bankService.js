@@ -1,10 +1,10 @@
-import { Storage } from './helpers';
+import { Storage, delay } from './helpers';
 
 const defaultBanks = {
   1: 'SBER',
   2: 'ALPHA',
   3: 'TINK',
-  4: 'RIAF',
+  4: 'RAIF',
   5: 'POCHT',
 };
 
@@ -15,14 +15,16 @@ const defaultTransactions = [
 
 const transactionsStorage = new Storage('transactions', defaultTransactions);
 
-let operationId = 3;
+let operationId = Math.max(...transactionsStorage.get().map(({ id }) => id)) + 1;
 
 const bankService = {
   async getBanks() {
+    await delay();
     return defaultBanks;
   },
 
   async getTransactions() {
+    await delay();
     return transactionsStorage.get();
   },
 
@@ -31,10 +33,14 @@ const bankService = {
       id: operationId++,
         ...details,
     });
+    await delay();
+
+    return transactionsStorage.get();
   },
 
   async deleteTransaction(id) {
     transactionsStorage.delete(id);
+    await delay();
     return transactionsStorage.get();
   },
 };

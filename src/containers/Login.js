@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
   login,
-  logout
+  logout,
+  showAlert
 } from '../actions';
 
 import Login from '../components/Login'
@@ -19,7 +20,8 @@ const mapDispatchToProps = dispatch =>
     {
       login,
       logout,
-      push
+      showAlert,
+      push,
     },
     dispatch
   );
