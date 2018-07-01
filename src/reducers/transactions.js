@@ -14,14 +14,14 @@ export default (state = initialState, action) => {
     case TRANSACTIONS_FETCHING:
       return {
         ...state,
-        isFetching: true
+        isFetching: action.value,
       };
 
     case TRANSACTIONS_SUCCESS:
       return {
         ...state,
         transactions: action.transactions,
-        isFetching: false
+        isFetching: false,
       };
 
     default:

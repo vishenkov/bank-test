@@ -5,7 +5,7 @@ import {
 } from '../actions';
 
 const initialState = {
-  isFetchingBanks: false,
+  isFetching: false,
   banks: [],
 };
 
@@ -14,14 +14,14 @@ export default (state = initialState, action) => {
     case BANKS_FETCHING:
       return {
         ...state,
-        isFetchingBanks: true
+        isFetching: action.value
       };
 
     case BANKS_SUCCESS:
       return {
         ...state,
         banks: action.banks,
-        isFetchingBanks: false
+        isFetching: false,
       };
 
     default:

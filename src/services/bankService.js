@@ -1,3 +1,5 @@
+import { Storage } from './helpers';
+
 const defaultBanks = {
   1: 'SBER',
   2: 'ALPHA',
@@ -11,6 +13,8 @@ const defaultTransactions = [
   {id: 2, amount: 200, bankId: 2},
 ];
 
+const transactionsStorage = new Storage('transactions', defaultTransactions);
+
 let operationId = 3;
 
 const bankService = {
@@ -19,26 +23,19 @@ const bankService = {
   },
 
   async getTransactions() {
-    const transactions = JSON.parse(localStorage.getItem('transactions') || defaultTransactions);
-    return transactions;
+    return transactionsStorage.get();
   },
 
   async addTransaction(details) {
-    const transactions = JSON.parse(localStorage.getItem('transactions') || defaultTransactions);
-    localStorage.setItem('transactions', JSON.stringify([
-      ...transactions,
-      {
-        id: operationId++,
+    transactionsStorage.add({
+      id: operationId++,
         ...details,
-      }
-    ]));
+    });
   },
 
   async deleteTransaction(id) {
-    const transactions = JSON.parse(localStorage.getItem('transactions') || defaultTransactions);
-    localStorage.setItem('transactions', JSON.stringify(
-      transactions.filter(operation => operation.id !== id)
-    ));
+    transactionsStorage.delete(id);
+    return transactionsStorage.get();
   },
 };
 

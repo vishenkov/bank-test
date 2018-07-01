@@ -4,6 +4,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 
 module.exports = {
+  devServer: {
+    historyApiFallback: true,
+  },
+  devtool: 'eval-source-map',
   module: {
     rules: [
       {

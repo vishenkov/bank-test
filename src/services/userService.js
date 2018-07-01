@@ -1,6 +1,6 @@
 const userService = {
   async login(username, password) {
-    const users = JSON.parse(localStorage.getItem('users') || {});
+    const users = JSON.parse(localStorage.getItem('users')) || {};
     users[username] = password;
     localStorage.setItem('users', JSON.stringify(users));
     localStorage.setItem('user', JSON.stringify({
