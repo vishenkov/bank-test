@@ -21,3 +21,9 @@ npm start
 ```bash
 npm run build
 ```
+
+# Demo
+![Demo](/internals/gif/bank-demo.gif)
+
+# Live Demo
+[Демо приложения на heroku](https://bank-transactions.herokuapp.com/)
